@@ -1,0 +1,92 @@
+body {
+  background-color: #343A40; }
+
+nav {
+  width: 100%;
+  background-color: #696969;
+  box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.75); }
+  nav ul {
+    margin: 0; }
+    nav ul li .nav-link {
+      color: white;
+      font-size: 2em;
+      font-weight: bold; }
+    nav ul li .nav-link:hover {
+      color: #343A40;
+      transition-duration: 0.5s; }
+
+.col-12 {
+  padding: 0; }
+
+.search {
+  width: 35%;
+  margin: 14rem auto 0 auto;
+  margin-bottom: 5rem; }
+  .search .field {
+    width: 80%; }
+
+.table {
+  width: 70%;
+  margin: 1rem auto;
+  color: white; }
+  .table a {
+    color: white; }
+  .table th {
+    background-color: #DCDCDC;
+    color: #696969; }
+    .table th .createProduct {
+      color: #DCDCDC;
+      background-color: #696969; }
+
+.table-hover tbody tr:hover {
+  background-color: #696969;
+  color: white;
+  transition-duration: 0.7s; }
+  .table-hover tbody tr:hover a {
+    color: white; }
+
+.product_detail section {
+  width: 50%;
+  margin: auto;
+  margin-top: 12rem; }
+  .product_detail section ul a {
+    color: white; }
+  .product_detail section #product {
+    color: white; }
+    .product_detail section #product h2 {
+      text-transform: uppercase;
+      font-size: 3rem; }
+  .product_detail section #review,
+  .product_detail section #contact {
+    color: white; }
+    .product_detail section #review label,
+    .product_detail section #contact label {
+      display: block;
+      font-size: 2rem;
+      margin-top: 1.5rem; }
+    .product_detail section #review textarea,
+    .product_detail section #contact textarea {
+      width: 100%; }
+    .product_detail section #review .table,
+    .product_detail section #contact .table {
+      width: 100%; }
+
+.form_update {
+  margin-top: 10rem; }
+  .form_update h2 {
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 3rem; }
+  .form_update section {
+    width: 50%;
+    margin: auto; }
+    .form_update section label {
+      color: white;
+      text-transform: uppercase;
+      font-size: 1rem; }
+    .form_update section #id_thumbnail {
+      color: white; }
+
+/*# sourceMappingURL=style.css.map */

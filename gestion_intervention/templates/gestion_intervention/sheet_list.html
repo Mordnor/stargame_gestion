@@ -1,4 +1,4 @@
-{% extends "gestion_intervention/base.html" %} 
+{% extends "gestion_intervention/base.html" %}
 
 {% block content %}
 
@@ -11,19 +11,19 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Email</th>
+                <th scope="col">N°</th>
+                <th scope="col">Customer</th>
+                <th scope="col">date</th>
             </tr>
         </thead>
 
         <tbody>
-            {% for customer in object_list %}
+            {% for sheet in object_list %}
 
             <tr>
-                <td scope="row"><a href="{% url 'customer-detail' customer.slug %}">{{customer.first_name}} {{customer.last_name}}</a></td>
-                <td>{{customer.phone}}</td>
-                <td>{{customer.email}}</td>
+                <td><a href="{% url 'sheet-detail' sheet.id %}">{{sheet.id}}</a></td>
+                <td scope="row"><a href="#">{{sheet.customer.first_name}} {{sheet.customer.last_name}}</a></td>
+                <td>{{sheet.date}}</td>
             </tr>
 
             {% endfor %}

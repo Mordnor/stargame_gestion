@@ -33,6 +33,7 @@ class Customer(models.Model):
 
 class Sheet(models.Model):
     customer = models.ForeignKey(Customer)
+    date = models.DateTimeField(auto_now_add=True, blank=True)
     statut = models.CharField(max_length=40, choices=STATUS_SHEET)
     other = MultiSelectField(max_length=40, choices=OTHERS_CHOICES, null=True, blank=True )
     reason = models.TextField()

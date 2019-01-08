@@ -1,0 +1,69 @@
+{% extends "gestion_intervention/base.html" %}
+
+{% load widget_tweaks %}
+
+
+{% block extra_css %}
+
+{% if is_pdf == True %}
+<style>
+    body {
+        background-color: white;
+        font-weight: bold;
+    }
+
+    .col-12 {
+        color: black;
+    }
+
+    .sheet_detail {
+        margin: 0;
+    }
+
+    .sheet_detail h2 {
+        color: black;
+    }
+</style>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="col-12 form_update detail_customer sheet_detail">
+    <h5>Fiche N°{{sheet.id}}</h5>
+    <h2>Date d'intervention : {{ sheet.date }}</h2>
+    <h3>{{sheet.customer.first_name}} {{sheet.customer.last_name}}</h3>
+    <section class="head_sheet">
+
+        <p>{{sheet.customer.phone}} </p>
+        <p>{{sheet.customer.email}} </p>
+    </section>
+
+    <section class="core_sheet">
+        <h4>Motif</h4>
+        <p>{{sheet.reason}}</p>
+
+        <h4>Solution</h4>
+        <p>{{sheet.resolution}}</p>
+
+        <h4>Observation</h4>
+        <p>{{sheet.comment}}</p>
+    </section>
+
+    <section class="footer_sheet">
+        <h4>Test de base Effectué</h4>
+        <p><i class="far fa-square"></i> Antivirus</p>
+        <p><i class="far fa-square"></i> S.M.A.R.T</p>
+        <p><i class="far fa-square"></i> Nettoyage interne</p>
+        <p><i class="far fa-square"></i> Mémoire</p>
+        <p><i class="far fa-square"></i> Internet</p>
+
+        <h4>Autres</h4>
+        <p>{{sheet.other}}</p>
+    </section>
+    {% if is_pdf != True %}
+    <a href="{% url 'sheet-pdf-detail' sheet.id %}"> generate pdf </a>
+    {% endif %}
+</div>
+{% endblock %}

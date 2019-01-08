@@ -1,0 +1,46 @@
+{% extends "gestion_intervention/base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="col-12 form_update">
+    <section>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label>Customer</label>
+                    {{ form.customer|add_class:"form-control"}}
+                </div>
+                <div class="form-group col-md-12">
+                    <label>statut</label>
+                    {{ form.statut|add_class:"form-control"}}
+                </div>
+                {% for value, text in form.other.field.choices %}
+                <div class="form-group col-md-3">
+                 <input id="id_other_{{ forloop.counter0 }}" name="{{ form.other.name }}" type="checkbox" value="{{ value }}">
+                  <label>{{ text }}</label>
+                    {{ form.phone|add_class:"form-control"}}
+                </div>
+                {% endfor %}
+                <div class="form-group col-md-12">
+                    <label>Reason</label>
+                    {{ form.reason|add_class:"form-control"}}
+                </div>
+                <div class="form-group col-md-12">
+                    <label>Resolution</label>
+                    {{ form.resolution|add_class:"form-control"}}
+                </div>
+                <div class="form-group col-md-12">
+                    <label>Comment</label>
+                    {{ form.comment|add_class:"form-control"}}
+                </div>
+                <div class="form-group col-md-1">
+                    <label>Guarantee</label>
+                    {{ form.guarantee|add_class:"form-control"}}
+                </div>
+            </div>
+            <input type="submit" name="submit" value="submit" class="updateBtn">
+        </form>
+    </section>
+</div>
+{% endblock %}

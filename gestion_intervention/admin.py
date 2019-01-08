@@ -12,8 +12,8 @@ class CustomerAdmin(admin.ModelAdmin):
 
 
 class SheetAdmin(admin.ModelAdmin):
-   list_display = ('id', 'customer', 'reason', 'resolution', 'comment')
-   search_fields = ('customer', 'reason', 'resolution', 'comment')
+   list_display = ('id', 'customer', 'reason', 'resolution', 'comment', 'date')
+   search_fields = ('customer', 'reason', 'resolution', 'comment', 'date')
 
 
 

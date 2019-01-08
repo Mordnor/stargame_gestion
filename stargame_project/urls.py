@@ -16,7 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from gestion_intervention.views import CustomerListView, CustomerCreateView
+from gestion_intervention.views import CustomerListView, CustomerCreateView, SheetListView
+from gestion_intervention.views import SheetCreateView, CustomerDetailView, SheetDetailView
+from gestion_intervention.views import SheetPdfDetailView
 
 
 urlpatterns = [
@@ -27,4 +29,13 @@ urlpatterns = [
 
     url(r'^$', CustomerListView.as_view(), name='customer-list'),
     url(r'^customer/create/$', CustomerCreateView.as_view(), name='customer-create'),
+    url(r'^customer/(?P<slug>[-\w]+)/$', CustomerDetailView.as_view(),
+    name='customer-detail'),
+
+    url(r'^sheet/$', SheetListView.as_view(), name='sheet-list'),
+    url(r'^sheet/create/$', SheetCreateView.as_view(), name='sheet-create'),
+    url(r'^sheet/(?P<pk>[-\w]+)/$', SheetDetailView.as_view(),
+    name='sheet-detail'),
+    url(r'^sheet/pdf/(?P<pk>[-\w]+)/$', SheetPdfDetailView.as_view(),
+    name='sheet-pdf-detail'),
 ]

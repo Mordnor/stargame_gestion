@@ -135,3 +135,6 @@ STATICFILES_DIRS = [
 
 LOGIN_URL = "/login"
 LOGOUT_URL = "/logout"
+
+
+DATE_INPUT_FORMATS = ['%d-%m-%Y']

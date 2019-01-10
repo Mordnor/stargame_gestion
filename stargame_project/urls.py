@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from gestion_intervention.views import CustomerListView, CustomerCreateView, SheetListView
 from gestion_intervention.views import SheetCreateView, CustomerDetailView, SheetDetailView
-from gestion_intervention.views import SheetPdfDetailView
+from gestion_intervention.views import SheetPdfDetailView, CustomerUpdateView, SheetUpdateView
 
 
 urlpatterns = [
@@ -29,13 +29,17 @@ urlpatterns = [
 
     url(r'^$', CustomerListView.as_view(), name='customer-list'),
     url(r'^customer/create/$', CustomerCreateView.as_view(), name='customer-create'),
-    url(r'^customer/(?P<slug>[-\w]+)/$', CustomerDetailView.as_view(),
+    url(r'^customer/(?P<slug>[-\w]+)/(?P<pk>[-\w]+)/$', CustomerDetailView.as_view(),
     name='customer-detail'),
+    url(r'^customer/(?P<slug>[-\w]+)/(?P<pk>[-\w]+)/update/$', CustomerUpdateView.as_view(),
+    name='customer-update'),
 
     url(r'^sheet/$', SheetListView.as_view(), name='sheet-list'),
     url(r'^sheet/create/$', SheetCreateView.as_view(), name='sheet-create'),
     url(r'^sheet/(?P<pk>[-\w]+)/$', SheetDetailView.as_view(),
     name='sheet-detail'),
+    url(r'^sheet/(?P<pk>[-\w]+)/update/$', SheetUpdateView.as_view(),
+    name='sheet-update'),
     url(r'^sheet/pdf/(?P<pk>[-\w]+)/$', SheetPdfDetailView.as_view(),
     name='sheet-pdf-detail'),
 ]

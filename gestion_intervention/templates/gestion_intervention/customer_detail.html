@@ -4,19 +4,19 @@
 {% block content %}
 
 
-<div class="col-12 form_update detail_customer">
+<div class="col-12 detail_customer">
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="product-tab" data-toggle="tab" href="#product" role="tab" aria-controls="home"
+            <a class="nav-link active" id="create-tab" data-toggle="tab" href="#create_sheet" role="tab" aria-controls="home"
                 aria-selected="true"> Créer une fiche</a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="profile"
+            <a class="nav-link" id="list-tab" data-toggle="tab" href="#list_sheet" role="tab" aria-controls="profile"
                 aria-selected="false">Anciennes Fiches</a>
         </li>
         <li class="nav-item ml-auto">
-            <a class="nav-link" href="#"><i class="fas fa-edit"></i></a>
+            <a class="nav-link" href="{% url 'customer-update' customer.slug customer.pk %}"><i class="fas fa-edit"></i></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#"><i class="fas fa-trash-alt"></i></a>
@@ -27,9 +27,9 @@
 
 
 
-        <!-- PRODUCT DESCRIPTION -->
+        <!-- CREATE SHEET -->
 
-        <div class="tab-pane fade show active p-2" id="product" role="tabpanel" aria-labelledby="product-tab">
+        <div class="tab-pane fade show active p-2" id="create_sheet" role="tabpanel" aria-labelledby="create-tab">
             <div class="row">
                 <div class="col-12">
                     <h2>Date d'intervention : {{ date }}</h2>
@@ -59,23 +59,23 @@
                                 </div>
                                 {% endfor %}
                                 <div class="form-group col-md-12">
-                                    <label>Reason</label>
+                                    <label>Motif</label>
                                     {{ sheet_form.reason|add_class:"form-control"}}
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label>Resolution</label>
+                                    <label>Solution</label>
                                     {{ sheet_form.resolution|add_class:"form-control"}}
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label>Comment</label>
+                                    <label>Observation</label>
                                     {{ sheet_form.comment|add_class:"form-control"}}
                                 </div>
                                 <div class="form-group col-md-1">
-                                    <label>Guarantee</label>
+                                    <label>Garanti</label>
                                     {{ sheet_form.guarantee|add_class:"form-control"}}
                                 </div>
                             </div>
-                            <input type="submit" name="submit" value="submit" class="updateBtn">
+                            <input type="submit" name="submit" value="ajouter" class="updateBtn">
                         </form>
                     </section>
                 </div>
@@ -83,9 +83,9 @@
         </div>
 
 
-        <!-- REVIEW TABS -->
+        <!-- LIST TABS -->
 
-        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+        <div class="tab-pane fade" id="list_sheet" role="tabpanel" aria-labelledby="list-tab">
             <div class="row">
                 <div class="col-12">
                     <section>
@@ -94,7 +94,7 @@
                             <div class="col-4 mb-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{sheet.date}}</h5>
+                                        <h5 class="card-title">{{sheet.datepublished}}</h5>
                                         <p class="card-text">{{sheet.reason}}</p>
                                     </div>
                                 </div>
@@ -104,13 +104,6 @@
                     </section>
                 </div>
             </div>
-
-
-
         </div>
-
-
-
-
     </div>
     {% endblock %}

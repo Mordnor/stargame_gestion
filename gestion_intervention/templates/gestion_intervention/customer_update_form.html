@@ -8,15 +8,15 @@
             {% csrf_token %}
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <label>First Name</label>
+                    <label>Prénom</label>
                     {{ form.first_name|add_class:"form-control"}}
                 </div>
                 <div class="form-group col-md-12">
-                    <label>Last Name</label>
+                    <label>Nom</label>
                     {{ form.last_name|add_class:"form-control"}}
                 </div>
                 <div class="form-group col-md-12">
-                    <label>Phone</label>
+                    <label>Telephone</label>
                     {{ form.phone|add_class:"form-control"}}
                 </div>
                 <div class="form-group col-md-12">
@@ -24,7 +24,7 @@
                     {{ form.email|add_class:"form-control"}}
                 </div>
             </div>
-            <input type="submit" name="submit" value="submit" class="updateBtn">
+            <input type="submit" name="submit" value="ajouter" class="updateBtn">
         </form>
     </section>
 </div>

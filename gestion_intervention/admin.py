@@ -7,7 +7,7 @@ from .models import *
 
 # Register your models here.
 class CustomerAdmin(admin.ModelAdmin):
-   list_display = ('id', 'first_name', 'last_name', 'phone', 'email')
+   list_display = ('id', 'first_name', 'last_name', 'phone', 'email', 'slug')
    search_fields = ('first_name', 'last_name', 'phone', 'email')
 
 

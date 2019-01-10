@@ -1,10 +1,16 @@
 // ====================MOTHER========================= //
+
 body {
     background-color: #343A40;
     font-family: Arial, sans-serif
 }
 
-// ====================HEADER========================= //
+.col-12 {
+    padding: 0;
+    margin-top: 50px;
+    color: white;
+}
+
 nav {
     width: 100%;
     background-color: #696969;
@@ -28,24 +34,38 @@ nav {
     }
 }
 
-.col-12 {
-    padding: 0;
+// ====================LIST========================= //
+
+.customer_list,
+.sheet_list {
+    h2 {
+        text-align: center;
+        text-transform: uppercase;
+    }
 }
 
-.col-12 {
-    margin-top: 50px;
-    color: white;
-}
-
-
-// ====================LISTPRODUCT========================= //
 .search {
-    width: 35%;
-    margin: 5rem auto 0 auto;
-    margin-bottom: 5rem;
+    width: 30%;
+    margin: 2rem auto 0 auto;
+    margin-bottom: 3rem;
+
+    button {
+        border: 1px solid white;
+
+        i {
+            color: white;
+        }
+
+        &:hover {
+            background-color: black;
+        }
+    }
+
 
     .field {
         width: 80%;
+        border-radius: 5px;
+        height: 38px;
     }
 }
 
@@ -61,14 +81,7 @@ nav {
     th {
         background-color: #DCDCDC;
         color: #696969;
-
-        .createProduct {
-            color: #DCDCDC;
-            background-color: #696969;
-        }
     }
-
-
 }
 
 .table-hover tbody tr:hover {
@@ -81,92 +94,25 @@ nav {
     }
 }
 
-// ====================DETAILPRODUCT========================= //
-
-.product_detail {
-    section {
-        width: 50%;
-        margin: auto;
-        margin-top: 12rem;
-
-        ul {
-            a {
-                color: white;
-            }
-        }
-
-        #product {
-            color: white;
-
-            h2 {
-                text-transform: uppercase;
-                font-size: 3rem;
-            }
-        }
-
-        #review,
-        #contact {
-            color: white;
-
-            label {
-                display: block;
-                font-size: 2rem;
-                margin-top: 1.5rem;
-            }
-
-            textarea {
-                width: 100%;
-            }
-
-            input,
-            select {}
-
-            .table {
-                width: 100%;
-            }
-        }
-
-    }
-
-}
-
-// ====================UPDATEPRODUCT========================= //
-
-.form_update {
-    margin-top: 5rem;
-
-    h2 {
-        text-align: center;
-        text-transform: uppercase;
-        color: white;
-        font-size: 2rem;
-        margin-bottom: 3rem;
-    }
-
-    section {
-        width: 85%;
-        margin: auto;
-
-        label {
-            color: white;
-            text-transform: uppercase;
-            font-size: 1rem;
-        }
-
-        #id_thumbnail {
-            color: white;
-        }
-    }
-}
+// ====================DETAILVIEW========================= //
 
 
+.sheet_detail,
 .detail_customer {
+    a {
+        color: #c71dd2;
+    }
+
     ul {
         width: 60%;
         margin: 0 auto 1.5rem auto;
     }
 
     h2 {
+        text-align: center;
+        text-transform: uppercase;
+        color: white;
+        font-size: 2rem;
         margin-bottom: 1rem;
     }
 
@@ -188,10 +134,27 @@ nav {
         color: black;
     }
 
+    margin-top: 5rem;
+
+
+    section {
+        width: 60%;
+        margin: auto;
+
+        label {
+            color: white;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        #id_thumbnail {
+            color: white;
+        }
+    }
 }
 
+
 .sheet_detail {
-    font-family: Arial, sans-serif;
 
     h2 {
         font-size: 2.5rem;
@@ -201,6 +164,10 @@ nav {
         text-align: center;
     }
 
+    a {
+        font-size: 1.2rem;
+    }
+
     padding: 1rem;
 
 
@@ -208,7 +175,7 @@ nav {
 
         h4 {
             text-transform: uppercase;
-            font-size: 2rem;
+            font-size: 1rem;
         }
 
         p {
@@ -218,22 +185,26 @@ nav {
             padding: .5rem;
         }
     }
-}
 
-.footer_sheet {
-    h4 {
-        font-size: 2rem;
-    }
+    .footer_sheet {
+        h4 {
+            font-size: 2rem;
+        }
 
-    p {
-        display: inline-block;
-        margin-right: 1.5rem;
-        font-size: 1.2rem;
+        p {
+            display: inline-block;
+            margin-right: 1.5rem;
+            font-size: 1.2rem;
 
-        i {
-            font-size: 1.5rem;
+            i {
+                font-size: 1.5rem;
+            }
         }
     }
 }
 
-// ====================FOOTER========================= //
+// ====================UpdateVIEW========================= //
+.form_update section {
+    width: 60%;
+    margin: 2rem auto 0 auto;
+}

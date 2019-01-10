@@ -2,6 +2,11 @@ body {
   background-color: #343A40;
   font-family: Arial, sans-serif; }
 
+.col-12 {
+  padding: 0;
+  margin-top: 50px;
+  color: white; }
+
 nav {
   width: 100%;
   background-color: #696969;
@@ -16,19 +21,25 @@ nav {
       color: #343A40;
       transition-duration: 0.5s; }
 
-.col-12 {
-  padding: 0; }
-
-.col-12 {
-  margin-top: 50px;
-  color: white; }
+.customer_list h2,
+.sheet_list h2 {
+  text-align: center;
+  text-transform: uppercase; }
 
 .search {
-  width: 35%;
-  margin: 5rem auto 0 auto;
-  margin-bottom: 5rem; }
+  width: 30%;
+  margin: 2rem auto 0 auto;
+  margin-bottom: 3rem; }
+  .search button {
+    border: 1px solid white; }
+    .search button i {
+      color: white; }
+    .search button:hover {
+      background-color: black; }
   .search .field {
-    width: 80%; }
+    width: 80%;
+    border-radius: 5px;
+    height: 38px; }
 
 .table {
   width: 70%;
@@ -39,9 +50,6 @@ nav {
   .table th {
     background-color: #DCDCDC;
     color: #696969; }
-    .table th .createProduct {
-      color: #DCDCDC;
-      background-color: #696969; }
 
 .table-hover tbody tr:hover {
   background-color: #696969;
@@ -50,89 +58,77 @@ nav {
   .table-hover tbody tr:hover a {
     color: white; }
 
-.product_detail section {
-  width: 50%;
-  margin: auto;
-  margin-top: 12rem; }
-  .product_detail section ul a {
-    color: white; }
-  .product_detail section #product {
-    color: white; }
-    .product_detail section #product h2 {
-      text-transform: uppercase;
-      font-size: 3rem; }
-  .product_detail section #review,
-  .product_detail section #contact {
-    color: white; }
-    .product_detail section #review label,
-    .product_detail section #contact label {
-      display: block;
-      font-size: 2rem;
-      margin-top: 1.5rem; }
-    .product_detail section #review textarea,
-    .product_detail section #contact textarea {
-      width: 100%; }
-    .product_detail section #review .table,
-    .product_detail section #contact .table {
-      width: 100%; }
-
-.form_update {
+.sheet_detail,
+.detail_customer {
   margin-top: 5rem; }
-  .form_update h2 {
+  .sheet_detail a,
+  .detail_customer a {
+    color: #c71dd2; }
+  .sheet_detail ul,
+  .detail_customer ul {
+    width: 60%;
+    margin: 0 auto 1.5rem auto; }
+  .sheet_detail h2,
+  .detail_customer h2 {
     text-align: center;
     text-transform: uppercase;
     color: white;
     font-size: 2rem;
-    margin-bottom: 3rem; }
-  .form_update section {
-    width: 85%;
+    margin-bottom: 1rem; }
+  .sheet_detail h3,
+  .detail_customer h3 {
+    text-align: center;
+    text-transform: uppercase; }
+  .sheet_detail .head_sheet,
+  .detail_customer .head_sheet {
+    text-align: center; }
+    .sheet_detail .head_sheet p,
+    .detail_customer .head_sheet p {
+      margin-bottom: 0rem;
+      font-size: 1.2rem; }
+  .sheet_detail .card,
+  .detail_customer .card {
+    color: black; }
+  .sheet_detail section,
+  .detail_customer section {
+    width: 60%;
     margin: auto; }
-    .form_update section label {
+    .sheet_detail section label,
+    .detail_customer section label {
       color: white;
       text-transform: uppercase;
       font-size: 1rem; }
-    .form_update section #id_thumbnail {
+    .sheet_detail section #id_thumbnail,
+    .detail_customer section #id_thumbnail {
       color: white; }
 
-.detail_customer ul {
-  width: 60%;
-  margin: 0 auto 1.5rem auto; }
-.detail_customer h2 {
-  margin-bottom: 1rem; }
-.detail_customer h3 {
-  text-align: center;
-  text-transform: uppercase; }
-.detail_customer .head_sheet {
-  text-align: center; }
-  .detail_customer .head_sheet p {
-    margin-bottom: 0rem;
-    font-size: 1.2rem; }
-.detail_customer .card {
-  color: black; }
-
 .sheet_detail {
-  font-family: Arial, sans-serif;
   padding: 1rem; }
   .sheet_detail h2 {
     font-size: 2.5rem; }
   .sheet_detail h5 {
     text-align: center; }
+  .sheet_detail a {
+    font-size: 1.2rem; }
   .sheet_detail .core_sheet h4 {
     text-transform: uppercase;
-    font-size: 2rem; }
+    font-size: 1rem; }
   .sheet_detail .core_sheet p {
     border: 3px solid #c71dd2;
     font-size: 1.2rem;
     height: 200px;
     padding: .5rem; }
+  .sheet_detail .footer_sheet h4 {
+    font-size: 2rem; }
+  .sheet_detail .footer_sheet p {
+    display: inline-block;
+    margin-right: 1.5rem;
+    font-size: 1.2rem; }
+    .sheet_detail .footer_sheet p i {
+      font-size: 1.5rem; }
 
-.footer_sheet h4 {
-  font-size: 2rem; }
-.footer_sheet p {
-  display: inline-block;
-  margin-right: 1.5rem;
-  font-size: 1.2rem; }
-  .footer_sheet p i {
-    font-size: 1.5rem; }
+.form_update section {
+  width: 60%;
+  margin: 2rem auto 0 auto; }
 
 /*# sourceMappingURL=style.css.map */

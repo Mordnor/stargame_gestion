@@ -16,11 +16,7 @@ from .models import Customer, Sheet
 class CustomerListView(ListView):
     models = Customer
     def get_queryset(self):
-        query = self.request.GET.get('q', None)
-        if query != None:
-            return Customer.objects.filter(last_name=query)
-        else:
-            return Customer.objects.all()
+        return Customer.objects.all()
 
 
 class CustomerCreateView(CreateView):
@@ -30,7 +26,7 @@ class CustomerCreateView(CreateView):
     success_url="/" 
 
     def get_success_url(self):
-        return reverse('customer-detail', kwargs={'slug' : self.object.slug})
+        return reverse('customer-detail', kwargs={'slug' : self.object.slug, 'pk' : self.object.id})
     
     def get_queryset(self):
         return Customer.objects.all()
@@ -49,6 +45,19 @@ class CustomerDetailView(DetailView):
 
     def get_queryset(self):
         return Customer.objects.all()
+
+class CustomerUpdateView(UpdateView):
+    models = Customer
+    fields = '__all__'
+    template_name = 'gestion_intervention/customer_update_form.html'
+
+
+    def get_success_url(self):
+        return reverse('customer-detail', kwargs={'slug' : self.object.slug, 'pk' : self.object.id})
+
+    def get_queryset(self):
+        return Customer.objects.all()
+
         
 
 
@@ -77,6 +86,18 @@ class SheetCreateView(CreateView):
 class SheetDetailView(DetailView):
     models = Sheet
     
+    def get_queryset(self):
+        return Sheet.objects.all()
+
+class SheetUpdateView(UpdateView):
+    models = Sheet
+    fields = '__all__'
+    template_name = 'gestion_intervention/sheet_update_form.html'
+
+
+    def get_success_url(self):
+        return reverse('sheet-detail', kwargs={'pk' : self.object.id})
+
     def get_queryset(self):
         return Sheet.objects.all()
 

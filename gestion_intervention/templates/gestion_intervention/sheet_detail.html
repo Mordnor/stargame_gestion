@@ -1,10 +1,7 @@
 {% extends "gestion_intervention/base.html" %}
-
 {% load widget_tweaks %}
 
-
 {% block extra_css %}
-
 {% if is_pdf == True %}
 <style>
     body {
@@ -23,16 +20,31 @@
     .sheet_detail h2 {
         color: black;
     }
+
+    .sheet_detail .core_sheet h4{
+        font-size : 2rem;
+    }
+
+    .sheet_detail section{
+        width : 85%;
+    }
 </style>
 {% endif %}
-
 {% endblock %}
 
 {% block content %}
 
-<div class="col-12 form_update detail_customer sheet_detail">
+<div class="col-12 sheet_detail">
+    {% if is_pdf != True %}
+    <ul class="nav nav-tabs">
+    <li class="nav-item ml-auto"><a class="nav-link" href="{% url 'sheet-pdf-detail' sheet.id %}"> <i class="fas fa-file-pdf"></i> </a></li>
+    <li class="nav-item"> 
+    <a class="nav-link" href="{% url 'sheet-update' sheet.id %}"> <i class="fas fa-edit"></i></a></li>
+    
+    </ul>
+    {% endif %}
     <h5>Fiche N°{{sheet.id}}</h5>
-    <h2>Date d'intervention : {{ sheet.date }}</h2>
+    <h2>Date d'intervention : {{ sheet.datepublished }}</h2>
     <h3>{{sheet.customer.first_name}} {{sheet.customer.last_name}}</h3>
     <section class="head_sheet">
 
@@ -62,8 +74,5 @@
         <h4>Autres</h4>
         <p>{{sheet.other}}</p>
     </section>
-    {% if is_pdf != True %}
-    <a href="{% url 'sheet-pdf-detail' sheet.id %}"> generate pdf </a>
-    {% endif %}
 </div>
 {% endblock %}

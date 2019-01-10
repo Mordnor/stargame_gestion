@@ -2,12 +2,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
 from autoslug import AutoSlugField
 from multiselectfield import MultiSelectField
 
-
-# Create your models here.
 
 OTHERS_CHOICES = (
     ('batterie', 'Batterie'),
@@ -24,12 +21,13 @@ STATUS_SHEET = (
 class Customer(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    slug = AutoSlugField(populate_from='first_name', unique_with=['last_name'])
-    email = models.EmailField(blank=True, null=True)
+    slug = AutoSlugField(populate_from='first_name')
+    email = models.EmailField(blank=True, null=True, unique=True)
     phone = models.CharField(max_length=70, null=False, blank=False)
 
     def __unicode__(self):
         return self.first_name + " " + self.last_name
+
 
 class Sheet(models.Model):
     customer = models.ForeignKey(Customer)
@@ -40,3 +38,6 @@ class Sheet(models.Model):
     resolution = models.TextField()
     comment = models.TextField()
     guarantee = models.BooleanField(default=False)
+
+    def datepublished(self):
+        return self.date.strftime('%d/%m/%Y')

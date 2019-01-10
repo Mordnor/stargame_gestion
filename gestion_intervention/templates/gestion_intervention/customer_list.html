@@ -1,18 +1,20 @@
-{% extends "gestion_intervention/base.html" %} 
+{% extends "gestion_intervention/base.html" %}
 
 {% block content %}
 
-<div class="col-12">
+<div class="col-12 customer_list ">
+    <h2>Clients</h2>
     <form class="search mx-auto" action="#" method="get">
-        <input class="field" type="search" name="q" placeholder="Rechercher" class="form-control">
-        <input type="submit" name="search" value="Search" class="btnsearch">
+        <input class="field" id="myCustomerInput" type="search" name="q" placeholder="Rechercher" class="form-control">
+        <button class="btn " type="submit"><i class="fas fa-search"></i></button>
     </form>
 
     <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Phone</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Telephone</th>
                 <th scope="col">Email</th>
             </tr>
         </thead>
@@ -20,10 +22,11 @@
         <tbody>
             {% for customer in object_list %}
 
-            <tr>
-                <td scope="row"><a href="{% url 'customer-detail' customer.slug %}">{{customer.first_name}} {{customer.last_name}}</a></td>
-                <td>{{customer.phone}}</td>
-                <td>{{customer.email}}</td>
+            <tr class="customerName">
+                <td scope="row"><a href="{% url 'customer-detail' customer.slug customer.id %}">{{customer.last_name}}</a></td>
+                <td> <a href="{% url 'customer-detail' customer.slug customer.id %}"> {{customer.first_name}}</a></td>
+                <td> <a href="{% url 'customer-detail' customer.slug customer.id %}">{{customer.phone}}</a></td>
+                <td> <a href="{% url 'customer-detail' customer.slug customer.id %}">{{customer.email}}</a></td>
             </tr>
 
             {% endfor %}

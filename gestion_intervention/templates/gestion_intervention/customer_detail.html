@@ -8,32 +8,60 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="create-tab" data-toggle="tab" href="#create_sheet" role="tab" aria-controls="home"
-                aria-selected="true"> Créer une fiche</a>
+            <a class="nav-link active" id="create-sheet-tab" data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet"
+                aria-selected="true">Créer Intervention</a>
         </li>
-        <li class="nav-item ">
-            <a class="nav-link" id="list-tab" data-toggle="tab" href="#list_sheet" role="tab" aria-controls="profile"
+        <li class="nav-item">
+            <a class="nav-link" id="create-request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request"
+                aria-selected="false">Créer Requête</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list"
                 aria-selected="false">Anciennes Fiches</a>
         </li>
+
         <li class="nav-item ml-auto">
             <a class="nav-link" href="{% url 'customer-update' customer.slug customer.pk %}"><i class="fas fa-edit"></i></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-trash-alt"></i></a>
+            <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="#"><i class="fas fa-trash-alt"></i></a>
+
         </li>
     </ul>
 
+    <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="create-tab" data-toggle="tab" href="#create_sheet" role="tab" aria-controls="home"
+                aria-selected="true"> Créer Intervention</a>
+        </li>
+
+        <li class="nav-item ">
+            <a class="nav-link" id="request_create_tab" data-toggle="tab" href="#create_request" role="tab"
+                aria-controls="profile" aria-selected="false">Créer Requête</a>
+        </li>
+
+        <li class="nav-item ">
+            <a class="nav-link" id="list-tab" data-toggle="tab" href="#list_sheet" role="tab" aria-controls="profile"
+                aria-selected="false">Anciennes Fiches</a>
+        </li>
+
+
+        <li class="nav-item ml-auto">
+            <a class="nav-link" href="{% url 'customer-update' customer.slug customer.pk %}"><i class="fas fa-edit"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'customer-delete' customer.slug customer.id %}"><i class="fas fa-trash-alt"></i></a>
+        </li>
+    </ul> -->
+
+
     <div class="tab-content" id="myTabContent">
-
-
-
-        <!-- CREATE SHEET -->
-
-        <div class="tab-pane fade show active p-2" id="create_sheet" role="tabpanel" aria-labelledby="create-tab">
+        <!-- CREATE SHEET TAB -->
+        <div class="tab-pane fade show active" id="sheet" role="tabpanel" aria-labelledby="create-sheet-tab">
             <div class="row">
                 <div class="col-12">
                     <h2>Date d'intervention : {{ date }}</h2>
-                    <h3>{{customer.first_name}} {{customer.last_name}}</h3>
+                    <h3>{{customer.last_name}} {{customer.first_name}} </h3>
                     <section class="head_sheet">
 
                         <p>{{customer.phone}} </p>
@@ -83,21 +111,73 @@
         </div>
 
 
-        <!-- LIST TABS -->
 
-        <div class="tab-pane fade" id="list_sheet" role="tabpanel" aria-labelledby="list-tab">
+        <!-- CREATE SHEET TAB -->
+
+        <div class="tab-pane fade" id="request" role="tabpanel" aria-labelledby="create-request-tab">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Date : {{ date }}</h2>
+                    <h3>{{customer.first_name}} {{customer.last_name}}</h3>
+                    <section class="head_sheet">
+
+                        <p>{{customer.phone}} </p>
+                        <p>{{customer.email}} </p>
+                    </section>
+
+                    <section>
+                        <form action="{% url 'request-create' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    {{ sheet_form.customer.as_hidden}}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Motif</label>
+                                    {{ request_form.reason|add_class:"form-control"}}
+                                </div>
+
+                            </div>
+                            <input type="submit" name="submit" value="ajouter" class="updateBtn">
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- CREATE SHEET TAB -->
+        <div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="list-tab">
             <div class="row">
                 <div class="col-12">
                     <section>
                         <div class="row">
+                            <h2 class="text-left">Fiches d'Interventions</h2>
                             {% for sheet in sheets %}
                             <div class="col-4 mb-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{sheet.datepublished}}</h5>
-                                        <p class="card-text">{{sheet.reason}}</p>
+                                <a href="{% url 'sheet-detail' sheet.id %}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{sheet.datepublished}}</h5>
+                                            <p class="card-text">{{sheet.reason}}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                            <h2 class="mt-5 text-left">Demande d'informations</h2>
+                            {% for request in requests %}
+                            <div class="col-4 mb-4">
+                                <a href="{% url 'request-detail' request.id %}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{request.datepublished}}</h5>
+                                            <p class="card-text">{{request.reason}}</p>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                             {% endfor %}
                         </div>
@@ -106,4 +186,26 @@
             </div>
         </div>
     </div>
-    {% endblock %}
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Demande de Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Dorian vous demande si vous etes certain de vouloir supprimer ce client (Cela supprimera toutes ses fiches)</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="btn btn-secondary" href="{% url 'customer-delete' customer.slug customer.id %}">Confirmer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

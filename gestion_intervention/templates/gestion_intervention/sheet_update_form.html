@@ -8,7 +8,7 @@
             {% csrf_token %}
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <label>Customer</label>
+                    <label>Client</label>
                     {{ form.customer|add_class:"form-control"}}
                 </div>
                 <div class="form-group col-md-12">
@@ -23,19 +23,19 @@
                 </div>
                 {% endfor %}
                 <div class="form-group col-md-12">
-                    <label>Reason</label>
+                    <label>Motif</label>
                     {{ form.reason|add_class:"form-control"}}
                 </div>
                 <div class="form-group col-md-12">
-                    <label>Resolution</label>
+                    <label>Solution</label>
                     {{ form.resolution|add_class:"form-control"}}
                 </div>
                 <div class="form-group col-md-12">
-                    <label>Comment</label>
+                    <label>Observation</label>
                     {{ form.comment|add_class:"form-control"}}
                 </div>
                 <div class="form-group col-md-1">
-                    <label>Guarantee</label>
+                    <label>Garanti</label>
                     {{ form.guarantee|add_class:"form-control"}}
                 </div>
             </div>

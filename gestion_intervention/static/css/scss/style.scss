@@ -11,6 +11,8 @@ body {
     color: white;
 }
 
+
+
 nav {
     width: 100%;
     background-color: #696969;
@@ -19,7 +21,13 @@ nav {
     ul {
         margin: 0;
 
+        .dropdown-toggle::after {
+            display: none;
+        }
+
         li {
+            text-transform: uppercase;
+
             .nav-link {
                 color: white;
                 font-size: 2em;
@@ -37,15 +45,36 @@ nav {
 // ====================LIST========================= //
 
 .customer_list,
-.sheet_list {
+.sheet_list,
+.request_list {
     h2 {
         text-align: center;
         text-transform: uppercase;
+        font-size: 3.5rem;
+        font-weight: bold;
+    }
+}
+
+.customer_list {
+    h2 {
+        color: #43af3d;
+    }
+}
+
+.sheet_list {
+    h2 {
+        color: #4286f4;
+    }
+}
+
+.request_list {
+    h2 {
+        color: #f92a2a;
     }
 }
 
 .search {
-    width: 30%;
+    width: 40%;
     margin: 2rem auto 0 auto;
     margin-bottom: 3rem;
 
@@ -63,7 +92,7 @@ nav {
 
 
     .field {
-        width: 80%;
+        width: 90%;
         border-radius: 5px;
         height: 38px;
     }
@@ -74,23 +103,38 @@ nav {
     margin: 1rem auto;
     color: white;
 
+    .request_head_list {
+        background-color: #f92a2a;
+
+    }
+
+    .customer_head_list {
+        background-color: #43af3d;
+    }
+
+    .sheet_head_list {
+        background-color: #4286f4;
+    }
+
     a {
         color: white;
     }
 
     th {
-        background-color: #DCDCDC;
-        color: #696969;
-    }
-}
-
-.table-hover tbody tr:hover {
-    background-color: #696969;
-    color: white;
-    transition-duration: 0.7s;
-
-    a {
         color: white;
+        text-transform: uppercase;
+    }
+
+    .sheet_table:nth-child(even) {
+        background-color: #2f599e;
+    }
+
+    .customer_table:nth-child(even) {
+        background-color: #32752e;
+    }
+
+    .request_table:nth-child(even) {
+        background-color: #9e2929;
     }
 }
 
@@ -111,6 +155,7 @@ nav {
     h2 {
         text-align: center;
         text-transform: uppercase;
+        width: 100%;
         color: white;
         font-size: 2rem;
         margin-bottom: 1rem;
@@ -151,6 +196,10 @@ nav {
             color: white;
         }
     }
+
+    .modal {
+        color: black;
+    }
 }
 
 
@@ -186,6 +235,19 @@ nav {
         }
     }
 
+    .core_request {
+        h4 {
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        p {
+            border: 3px solid #c71dd2;
+            font-size: 1.2rem;
+            padding: .5rem;
+        }
+    }
+
     .footer_sheet {
         h4 {
             font-size: 2rem;
@@ -201,6 +263,7 @@ nav {
             }
         }
     }
+
 }
 
 // ====================UpdateVIEW========================= //

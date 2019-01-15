@@ -10,7 +10,7 @@
     </form>
 
     <table class="table table-hover">
-        <thead>
+        <thead class="customer_head_list">
             <tr>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
@@ -22,13 +22,12 @@
         <tbody>
             {% for customer in object_list %}
 
-            <tr class="customerName">
-                <td scope="row"><a href="{% url 'customer-detail' customer.slug customer.id %}">{{customer.last_name}}</a></td>
+            <tr class="customer_table customerName">
+                <td scope="row"><a href="{% url 'customer-detail' customer.slug customer.id %}">{% filter upper %}{{customer.last_name}} {% endfilter %} </a></td>
                 <td> <a href="{% url 'customer-detail' customer.slug customer.id %}"> {{customer.first_name}}</a></td>
-                <td> <a href="{% url 'customer-detail' customer.slug customer.id %}">{{customer.phone}}</a></td>
+                <td> <a class="phone_number" href="{% url 'customer-detail' customer.slug customer.id %}">{{customer.phone}}</a></td>
                 <td> <a href="{% url 'customer-detail' customer.slug customer.id %}">{{customer.email}}</a></td>
             </tr>
-
             {% endfor %}
         </tbody>
     </table>

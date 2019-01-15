@@ -1,0 +1,35 @@
+{% extends "gestion_intervention/base.html" %}
+
+{% block content %}
+
+<div class="col-12 request_list">
+    <h2>Requête Client</h2>
+
+    <form class="search mx-auto" action="#" method="get">
+        <input class="field" id="myCustomerInput" type="search" name="q" placeholder="Rechercher" class="form-control">
+        <button class="btn " type="submit"><i class="fas fa-search"></i></button>
+    </form>
+
+    <table class="table table-hover">
+        <thead class="request_head_list">
+            <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Client</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for request in object_list %}
+
+            <tr class="request_table customerName">
+                <td><a href="{% url 'request-detail' request.id %}">{{request.id}}</a></td>
+                <td scope="row"><a href="{% url 'request-detail' request.id %}">{% filter upper %}{{request.customer.last_name}}{% endfilter %} {{request.customer.first_name}} </a></td>
+                <td><a href="{% url 'request-detail' request.id %}">{{request.datepublished}}</a></td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

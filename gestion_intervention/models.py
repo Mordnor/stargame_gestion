@@ -34,10 +34,23 @@ class Sheet(models.Model):
     date = models.DateTimeField(auto_now_add=True, blank=True)
     statut = models.CharField(max_length=40, choices=STATUS_SHEET)
     other = MultiSelectField(max_length=40, choices=OTHERS_CHOICES, null=True, blank=True )
-    reason = models.TextField()
-    resolution = models.TextField()
-    comment = models.TextField()
+    reason = models.TextField(null=True, blank=True)
+    resolution = models.TextField(null=True, blank=True)
+    comment = models.TextField(null=True, blank=True)
     guarantee = models.BooleanField(default=False)
 
     def datepublished(self):
+        return self.date.strftime('%d-%m-%Y')
+        
+
+class Request(models.Model):
+    customer = models.ForeignKey(Customer)
+    reason = models.TextField(null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, blank=True)
+    
+    def datepublished(self):
         return self.date.strftime('%d/%m/%Y')
+
+
+
+

@@ -1,0 +1,61 @@
+{% extends "gestion_intervention/base.html" %}
+{% load widget_tweaks %}
+
+{% block extra_css %}
+{% if is_pdf == True %}
+<style>
+    body {
+        background-color: white;
+        font-weight: bold;
+    }
+
+    .col-12 {
+        color: black;
+    }
+
+    /* .sheet_detail {
+        margin: 0;
+    }*/
+
+    .sheet_detail h2 {
+        color: black;
+    }
+
+
+    .sheet_detail section {
+        width: 85%;
+    }
+</style>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="col-12 sheet_detail">
+    {% if is_pdf != True %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item ml-auto"><a class="nav-link" href="{% url 'request-pdf-detail' request.id %}"> <i class="fas fa-file-pdf"></i>
+            </a></li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'request-update' request.id %}"> <i class="fas fa-edit"></i></a></li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'request-delete' request.pk %}"><i class="fas fa-trash-alt"></i></a>
+        </li>
+    </ul>
+    {% endif %}
+    <h5>Fiche N°{{request.id}}</h5>
+    <h2>Date : {{ request.datepublished }}</h2>
+    <h3><h3>{{request.customer.last_name}} {{request.customer.first_name}} </h3>
+    <section class="head_sheet">
+
+        <p>{{request.customer.phone}} </p>
+        <p>{{request.customer.email}} </p>
+    </section>
+
+    <section class="core_request">
+        <h4>Requête</h4>
+        <p>{{request.reason}}</p>
+    </section>
+
+</div>
+{% endblock %}

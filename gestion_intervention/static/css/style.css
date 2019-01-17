@@ -7,21 +7,21 @@ body {
   margin-top: 50px;
   color: white; }
 
-nav {
+.navbar {
   width: 100%;
   background-color: #696969;
   box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.75); }
-  nav ul {
+  .navbar ul {
     margin: 0; }
-    nav ul .dropdown-toggle::after {
+    .navbar ul .dropdown-toggle::after {
       display: none; }
-    nav ul li {
+    .navbar ul li {
       text-transform: uppercase; }
-      nav ul li .nav-link {
+      .navbar ul li .nav-link {
         color: white;
         font-size: 2em;
         font-weight: bold; }
-      nav ul li .nav-link:hover {
+      .navbar ul li .nav-link:hover {
         color: #343A40;
         transition-duration: 0.5s; }
 

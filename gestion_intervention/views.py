@@ -15,6 +15,7 @@ from .models import Customer, Sheet, Request
 # Create your views here.
 class CustomerListView(ListView):
     models = Customer
+    paginate_by = 21
     def get_queryset(self):
         return Customer.objects.all().order_by('-id')
 
@@ -72,6 +73,7 @@ class CustomerDeleteView(DeleteView):
         
 class SheetListView(ListView):
     models = Sheet
+    paginate_by = 21
     def get_queryset(self):
         return Sheet.objects.all().order_by('-date')
 
@@ -125,6 +127,7 @@ class SheetPdfDetailView(WeasyTemplateResponseMixin, SheetDetailView):
 
 class RequestListView(ListView):
     models = Request
+    paginate_by = 21
     def get_queryset(self):
         return Request.objects.all().order_by('-date')
 

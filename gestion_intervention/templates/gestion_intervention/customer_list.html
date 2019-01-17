@@ -1,5 +1,5 @@
 {% extends "gestion_intervention/base.html" %}
-
+{% load static %}
 {% block content %}
 
 <div class="col-12 customer_list ">
@@ -23,7 +23,8 @@
             {% for customer in object_list %}
 
             <tr class="customer_table customerName">
-                <td scope="row"><a href="{% url 'customer-detail' customer.slug customer.id %}">{% filter upper %}{{customer.last_name}} {% endfilter %} </a></td>
+                <td scope="row"><a href="{% url 'customer-detail' customer.slug customer.id %}">
+                        {% filter upper %}{{customer.last_name}} {% endfilter %} </a></td>
                 <td> <a href="{% url 'customer-detail' customer.slug customer.id %}"> {{customer.first_name}}</a></td>
                 <td> <a class="phone_number" href="{% url 'customer-detail' customer.slug customer.id %}">{{customer.phone}}</a></td>
                 <td> <a href="{% url 'customer-detail' customer.slug customer.id %}">{{customer.email}}</a></td>
@@ -31,5 +32,7 @@
             {% endfor %}
         </tbody>
     </table>
+    {% include "gestion_intervention/paginate.html" %}
+
 </div>
 {% endblock %}

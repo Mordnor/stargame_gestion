@@ -233,6 +233,12 @@ body {
             text-transform: uppercase;
         }
 
+        .password {
+            border: 3px solid #c71dd2;
+            display: block;
+            padding: .5rem;
+        }
+
         p {
             border: 3px solid #c71dd2;
             font-size: 1.2rem;

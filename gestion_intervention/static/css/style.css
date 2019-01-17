@@ -141,6 +141,10 @@ body {
   .sheet_detail .core_sheet div {
     display: inline-block;
     text-transform: uppercase; }
+  .sheet_detail .core_sheet .password {
+    border: 3px solid #c71dd2;
+    display: block;
+    padding: .5rem; }
   .sheet_detail .core_sheet p {
     border: 3px solid #c71dd2;
     font-size: 1.2rem;

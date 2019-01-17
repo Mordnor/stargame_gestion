@@ -35,6 +35,7 @@ class Sheet(models.Model):
     statut = models.CharField(max_length=40, choices=STATUS_SHEET)
     other = MultiSelectField(max_length=40, choices=OTHERS_CHOICES, null=True, blank=True )
     reason = models.TextField(null=True, blank=True)
+    password = models.CharField(max_length=100, null=True, blank=True)
     resolution = models.TextField(null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
     guarantee = models.BooleanField(default=False)

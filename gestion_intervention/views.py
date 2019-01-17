@@ -15,7 +15,7 @@ from .models import Customer, Sheet, Request
 # Create your views here.
 class CustomerListView(ListView):
     models = Customer
-    paginate_by = 21
+    paginate_by = 11
     def get_queryset(self):
         return Customer.objects.all().order_by('-id')
 

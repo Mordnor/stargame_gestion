@@ -28,6 +28,10 @@
     .sheet_detail section{
         width : 85%;
     }
+
+
+   
+
 </style>
 {% endif %}
 {% endblock %}
@@ -35,6 +39,7 @@
 {% block content %}
 
 <div class="col-12 sheet_detail">
+
     {% if is_pdf != True %}
     <ul class="nav nav-tabs">
         <li class="nav-item ml-auto"><a class="nav-link" href="{% url 'sheet-pdf-detail' sheet.id %}"> <i class="fas fa-file-pdf"></i>
@@ -47,6 +52,11 @@
     </ul>
     {% endif %}
     <h2>Fiche N°{{sheet.id}}</h2>
+    {% if sheet.important == True %}
+    <p class="text-center bg-danger w-50 mx-auto text-uppercase">
+        Fiche Urgente
+    </p>
+    {% endif %}
     <h3>{{sheet.customer.last_name}} {{sheet.customer.first_name}} </h3>
     <h5>Date d'intervention : {{ sheet.datepublished }}</h5>
     <section class="head_sheet">
@@ -61,7 +71,7 @@
         <div class="ml-2 mb-2"><i class="far fa-square"></i> Refusé</div>
         {{sheet.reason|linebreaks}}
 
-         <h4>Mot de Passe</h4>
+        <h4>Mot de Passe</h4>
         <div class="password mb-3">{{sheet.password}}</div>
 
         <h4>Solution</h4>

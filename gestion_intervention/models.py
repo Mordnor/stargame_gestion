@@ -31,6 +31,7 @@ class Customer(models.Model):
 
 class Sheet(models.Model):
     customer = models.ForeignKey(Customer)
+    important = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True, blank=True)
     statut = models.CharField(max_length=40, choices=STATUS_SHEET)
     other = MultiSelectField(max_length=40, choices=OTHERS_CHOICES, null=True, blank=True )
@@ -47,6 +48,7 @@ class Sheet(models.Model):
 class Request(models.Model):
     customer = models.ForeignKey(Customer)
     reason = models.TextField(null=True, blank=True)
+    important = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True, blank=True)
     
     def datepublished(self):

@@ -48,6 +48,11 @@
     </ul>
     {% endif %}
     <h5>Fiche N°{{request.id}}</h5>
+    {% if request.important == True %}
+      <p class="text-center bg-danger w-50 mx-auto text-uppercase">
+        Requête Urgente
+    </p>
+    {% endif %}
     <h2>Date : {{ request.datepublished }}</h2>
     <h3><h3>{{request.customer.last_name}} {{request.customer.first_name}} </h3>
     <section class="head_sheet">

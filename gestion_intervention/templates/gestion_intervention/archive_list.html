@@ -1,0 +1,72 @@
+{% extends "gestion_intervention/base.html" %}
+{% block content %}
+<div class="col-12 archive_list">
+    <h2>Archives</h2>
+
+    <form class="search mx-auto" action="#" method="get">
+        <input class="field" id="myCustomerInput" type="search" name="q" placeholder="Rechercher" class="form-control">
+        <button class="btn " type="submit"><i class="fas fa-search"></i></button>
+    </form>
+
+    <table class="table table-hover">
+        <thead class="archive_head_list">
+            <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Client</th>
+                <th scope="col">Date</th>
+                <th scope="col">statut</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for sheet in object_list %}
+
+            <tr class="archive_table customerName">
+                <td><a href="{% url 'sheet-detail' sheet.id %}">{{sheet.id}}</a></td>
+                <td  scope="row"><a href="{% url 'sheet-detail' sheet.id %}">{% filter upper %}{{sheet.customer.last_name}}{% endfilter %} 
+                        {{sheet.customer.first_name}} {% if sheet.important == True %}<i class="fas fa-exclamation-triangle text-danger mr-1"></i>{% endif %}</a></td>
+                <td><a href="{% url 'sheet-detail' sheet.id %}">{{sheet.datepublished}}</a></td>
+                <td><a href="{% url 'sheet-detail' sheet.id %}">{{sheet.statut}}</a></td>
+                <td>
+                    <form class="archive_remove" method='POST' action="{% url 'remove-sheet-archive' sheet.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="sheet_id" value="{{sheet.id}}">
+                        <button class="btn text-muted" type="submit"><i class="fas fa-archive"></i></button>
+                    </form>
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+    $(document).ready(function () {
+
+
+         $('.archive_remove').submit(function (event) {
+            var url = $(this).attr('action');
+            var data = $(this).serializeArray();
+
+            $.ajax({
+                url: url,
+                data: data,
+                method: "post",
+                success: function (response) {
+                }
+            })
+            event.preventDefault();
+
+        })
+
+        $('.archive_remove').submit(function(){
+            $(this).closest('tr').remove()
+        })
+    });
+</script>
+
+{% endblock %}

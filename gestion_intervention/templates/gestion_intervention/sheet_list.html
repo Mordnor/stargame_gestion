@@ -17,6 +17,7 @@
                 <th scope="col">Client</th>
                 <th scope="col">Date</th>
                 <th scope="col">statut</th>
+                <th scope="col">Options</th>
             </tr>
         </thead>
 
@@ -25,9 +26,30 @@
 
             <tr class="sheet_table customerName">
                 <td><a href="{% url 'sheet-detail' sheet.id %}">{{sheet.id}}</a></td>
-                <td scope="row"><a href="{% url 'sheet-detail' sheet.id %}">{% filter upper %}{{sheet.customer.last_name}}{% endfilter %} {{sheet.customer.first_name}} </a></td>
+                <td  scope="row"><a href="{% url 'sheet-detail' sheet.id %}">{% filter upper %}{{sheet.customer.last_name}}{% endfilter %} 
+                        {{sheet.customer.first_name}} {% if sheet.important == True %}<i class="fas fa-exclamation-triangle text-danger mr-1"></i>{% endif %}</a></td>
                 <td><a href="{% url 'sheet-detail' sheet.id %}">{{sheet.datepublished}}</a></td>
                 <td><a href="{% url 'sheet-detail' sheet.id %}">{{sheet.statut}}</a></td>
+                <td>
+                    {% if sheet.important == True %}
+                       <form class="change_important_false" action="{% url 'change-sheet-important-false' sheet.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="sheet_id" value="{{sheet.id}}">
+                        <button class="btn change-true text-danger" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
+                    </form>
+                    {% else %}
+                    <form class="change_important_true" action="{% url 'change-sheet-important-true' sheet.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="sheet_id" value="{{sheet.id}}">
+                        <button class="btn change-true text-muted" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
+                    </form>
+                    {% endif %}
+                    <form class="archive" method='POST' action="{% url 'change-sheet-archive' sheet.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="sheet_id" value="{{sheet.id}}">
+                        <button class="btn text-muted" type="submit"><i class="fas fa-archive"></i></button>
+                    </form>
+                </td>
             </tr>
 
             {% endfor %}
@@ -35,4 +57,86 @@
     </table>
 
 </div>
+{% endblock %}
+{% block extra_js %}
+<script>
+    $(document).ready(function () {
+        $('.change_important_true').submit(function (event) {
+            var url = $(this).attr('action');
+            var data = $(this).serializeArray();
+
+            $.ajax({
+                url: url,
+                data: data,
+                method: "post",
+                success: function (response) {
+                }   
+            })
+            event.preventDefault();
+
+        })
+
+    $('.change_important_true').click(function (){
+         var customer_sheet = $(this).closest('tr').children('td:nth-child(2)')
+         customer_sheet.append('<i class="fas fa-exclamation-triangle text-danger mr-1"></i>')
+    });
+
+
+     $('.change_important_false').submit(function (event) {
+            var url = $(this).attr('action');
+            var data = $(this).serializeArray();
+
+            $.ajax({
+                url: url,
+                data: data,
+                method: "post",
+                success: function (response) {
+                }
+            })
+            event.preventDefault();
+
+        })
+
+         $('.change_important_false').click(function(){
+            var customer_sheet_text = $(this).closest('tr').children('td:nth-child(2)').text()
+            var customer_sheet = $(this).closest('tr').children('td:nth-child(2)')
+            customer_sheet.text(' ')
+            customer_sheet.text(customer_sheet_text)
+            
+
+         })
+
+            $('.change-true ').click(function(){
+                if(this.className = 'text-muted'){
+                    console.log('plop text-danger')
+                    $(this).removeClass('text-muted').addClass('btn text-danger change-true');
+                }
+                else if (this.className = 'text-danger'){
+                    console.log('plop text-muted')
+                    $(this).removeClass('text-danger').addClass('btn text-muted change-true');
+                }            
+            })
+
+
+         $('.archive').submit(function (event) {
+            var url = $(this).attr('action');
+            var data = $(this).serializeArray();
+
+            $.ajax({
+                url: url,
+                data: data,
+                method: "post",
+                success: function (response) {
+                }
+            })
+            event.preventDefault();
+
+        })
+
+        $('.archive').submit(function(){
+            $(this).closest('tr').remove()
+        })
+    });
+</script>
+
 {% endblock %}

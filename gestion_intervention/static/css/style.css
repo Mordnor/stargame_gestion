@@ -1,84 +1,3 @@
-body {
-  background-color: #343A40;
-  font-family: Arial, sans-serif; }
-
-.col-12 {
-  padding: 0;
-  margin-top: 50px;
-  color: white; }
-
-.navbar {
-  width: 100%;
-  background-color: #696969;
-  box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.75); }
-  .navbar ul {
-    margin: 0; }
-    .navbar ul .dropdown-toggle::after {
-      display: none; }
-    .navbar ul li {
-      text-transform: uppercase; }
-      .navbar ul li .nav-link {
-        color: white;
-        font-size: 2em;
-        font-weight: bold; }
-      .navbar ul li .nav-link:hover {
-        color: #343A40;
-        transition-duration: 0.5s; }
-
-.customer_list h2,
-.sheet_list h2,
-.request_list h2 {
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 3.5rem;
-  font-weight: bold; }
-
-.customer_list h2 {
-  color: #43af3d; }
-
-.sheet_list h2 {
-  color: #4286f4; }
-
-.request_list h2 {
-  color: #f92a2a; }
-
-.search {
-  width: 40%;
-  margin: 2rem auto 0 auto;
-  margin-bottom: 3rem; }
-  .search button {
-    border: 1px solid white; }
-    .search button i {
-      color: white; }
-    .search button:hover {
-      background-color: black; }
-  .search .field {
-    width: 90%;
-    border-radius: 5px;
-    height: 38px; }
-
-.table {
-  width: 70%;
-  margin: 1rem auto;
-  color: white; }
-  .table .request_head_list {
-    background-color: #f92a2a; }
-  .table .customer_head_list {
-    background-color: #43af3d; }
-  .table .sheet_head_list {
-    background-color: #4286f4; }
-  .table a {
-    color: white; }
-  .table th {
-    color: white;
-    text-transform: uppercase; }
-  .table .sheet_table:nth-child(even) {
-    background-color: #2f599e; }
-  .table .customer_table:nth-child(even) {
-    background-color: #32752e; }
-  .table .request_table:nth-child(even) {
-    background-color: #9e2929; }
-
 .sheet_detail,
 .detail_customer {
   margin-top: 5rem; }
@@ -165,6 +84,100 @@ body {
     font-size: 1.2rem; }
     .sheet_detail .footer_sheet p i {
       font-size: 1.5rem; }
+
+.customer_list h2,
+.sheet_list h2,
+.request_list h2,
+.archive_list h2 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  font-weight: bold; }
+
+.customer_list h2 {
+  color: #43af3d; }
+
+.sheet_list h2 {
+  color: #4286f4; }
+
+.archive_list h2 {
+  color: #f9098b; }
+
+.request_list h2 {
+  color: #f92a2a; }
+
+.search {
+  width: 40%;
+  margin: 2rem auto 0 auto;
+  margin-bottom: 3rem; }
+  .search button {
+    border: 1px solid white; }
+    .search button i {
+      color: white; }
+    .search button:hover {
+      background-color: black; }
+  .search .field {
+    width: 90%;
+    border-radius: 5px;
+    height: 38px; }
+
+.table {
+  width: 70%;
+  margin: 1rem auto;
+  color: white; }
+  .table .request_head_list {
+    background-color: #f92a2a; }
+  .table .archive_head_list {
+    background-color: #f9098b; }
+  .table .customer_head_list {
+    background-color: #43af3d; }
+  .table .sheet_head_list {
+    background-color: #4286f4; }
+  .table a {
+    color: white; }
+  .table th {
+    color: white;
+    text-transform: uppercase; }
+  .table .sheet_table:nth-child(even) {
+    background-color: #2f599e; }
+  .table .customer_table:nth-child(even) {
+    background-color: #32752e; }
+  .table .archive_table:nth-child(even) {
+    background-color: #bc0769; }
+  .table .request_table:nth-child(even) {
+    background-color: #9e2929; }
+
+.change_important_true,
+.change_important_false,
+.archive {
+  display: inline-block; }
+
+.navbar {
+  width: 100%;
+  background-color: #696969;
+  box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.75); }
+  .navbar ul {
+    margin: 0; }
+    .navbar ul .dropdown-toggle::after {
+      display: none; }
+    .navbar ul li {
+      text-transform: uppercase; }
+      .navbar ul li .nav-link {
+        color: white;
+        font-size: 2em;
+        font-weight: bold; }
+      .navbar ul li .nav-link:hover {
+        color: #343A40;
+        transition-duration: 0.5s; }
+
+body {
+  background-color: #343A40;
+  font-family: Arial, sans-serif; }
+
+.col-12 {
+  padding: 0;
+  margin-top: 50px;
+  color: white; }
 
 .form_update section {
   width: 60%;

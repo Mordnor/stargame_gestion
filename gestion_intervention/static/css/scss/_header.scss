@@ -1,0 +1,28 @@
+.navbar {
+    width: 100%;
+    background-color: #696969;
+    box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.75);
+
+    ul {
+        margin: 0;
+
+        .dropdown-toggle::after {
+            display: none;
+        }
+
+        li {
+            text-transform: uppercase;
+
+            .nav-link {
+                color: white;
+                font-size: 2em;
+                font-weight: bold;
+            }
+
+            .nav-link:hover {
+                color: #343A40;
+                transition-duration: 0.5s;
+            }
+        }
+    }
+}

@@ -28,10 +28,13 @@ class Customer(models.Model):
     def __unicode__(self):
         return self.first_name + " " + self.last_name
 
+  
+
 
 class Sheet(models.Model):
     customer = models.ForeignKey(Customer)
     important = models.BooleanField(default=False)
+    archive = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True, blank=True)
     statut = models.CharField(max_length=40, choices=STATUS_SHEET)
     other = MultiSelectField(max_length=40, choices=OTHERS_CHOICES, null=True, blank=True )
@@ -43,6 +46,8 @@ class Sheet(models.Model):
 
     def datepublished(self):
         return self.date.strftime('%d-%m-%Y')
+
+    
         
 
 class Request(models.Model):

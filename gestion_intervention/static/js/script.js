@@ -22,17 +22,12 @@ $(function () {
     });
 
 
-
     // ==================== ADD SPACE BEETWEEN NUMBER IN PHONE NUMBERS ===================// 
 
-    var phone_number = $('.phone_number');
-
-
-    for (var i = 0; i < phone_number.length; i++) {
-        var phone = phone_number[i];
-        var phone_text = $(phone).text();
-        var phone_modify = phone_text.replace(/(?!^)(?=(?:\d{2})+(?:\.|$))/gm, ' ');
-        $(phone).text(phone_modify)
-    }
+    $('.phone_number').each(function (i, phoneNumber) {
+        var phoneText = $(phoneNumber).html().trim();
+        var phoneModify = phoneText.replace(/(?!^)(?=(?:\d{2})+(?:\.|$))/gm, ' ');
+        $(phoneNumber).html(phoneModify)
+    })
 
 })

@@ -35,19 +35,19 @@
                        <form class="change_important_false" action="{% url 'change-sheet-important-false' sheet.id %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="sheet_id" value="{{sheet.id}}">
-                        <button class="btn change-true text-danger" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
+                        <button class="btn btn-light change-true text-danger" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
                     </form>
                     {% else %}
                     <form class="change_important_true" action="{% url 'change-sheet-important-true' sheet.id %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="sheet_id" value="{{sheet.id}}">
-                        <button class="btn change-true text-muted" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
+                        <button class="btn btn-light change-true text-muted" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
                     </form>
                     {% endif %}
                     <form class="archive" method='POST' action="{% url 'change-sheet-archive' sheet.id %}">
                         {% csrf_token %}
                         <input type="hidden" name="sheet_id" value="{{sheet.id}}">
-                        <button class="btn text-muted" type="submit"><i class="fas fa-archive"></i></button>
+                        <button class="btn btn-light change-true text-muted" type="submit"><i class="fas fa-archive"></i></button>
                     </form>
                 </td>
             </tr>
@@ -61,7 +61,10 @@
 {% block extra_js %}
 <script>
     $(document).ready(function () {
+
+
         $('.change_important_true').submit(function (event) {
+            var $form = $(this);
             var url = $(this).attr('action');
             var data = $(this).serializeArray();
 
@@ -70,19 +73,51 @@
                 data: data,
                 method: "post",
                 success: function (response) {
+                    var actual_sheet = $($form[0][1]).val();
+                    var new_form = `<form class="change_important_false" action="/sheet/${actual_sheet}/change/false" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="sheet_id" value="${actual_sheet}">
+                        <button class="btn btn-light change-true text-danger" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
+                    </form>`;
+                    $form.replaceWith(new_form);
+
+                    // ADD AJAX FUNCTION TO NEW FORM
+                    $('.change_important_false').submit(function (event) {
+                        var $form = $(this);
+                        var url = $(this).attr('action');
+                        var data = $(this).serializeArray();
+
+                        $.ajax({
+                            url: url,
+                            data: data,
+                            method: "post",
+                            success: function (response) {
+                                var actual_sheet = $($form[0][1]).val();
+                                var new_form = `<form class="change_important_true" action="/sheet/${actual_sheet}/change/true" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="sheet_id" value="${actual_sheet}">
+                                    <button class="btn btn-light change-true text-muted" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
+                                </form>`;
+                                $form.replaceWith(new_form);
+                            }
+                        })
+                        event.preventDefault();
+                        })
+
                 }   
             })
             event.preventDefault();
 
         })
 
-    $('.change_important_true').click(function (){
-         var customer_sheet = $(this).closest('tr').children('td:nth-child(2)')
-         customer_sheet.append('<i class="fas fa-exclamation-triangle text-danger mr-1"></i>')
-    });
+        $('.change_important_true').click(function (){
+            var customer_sheet = $(this).closest('tr').children('td:nth-child(2)')
+            customer_sheet.append('<i class="fas fa-exclamation-triangle text-danger mr-1"></i>')
+        });
 
 
      $('.change_important_false').submit(function (event) {
+            var $form = $(this);
             var url = $(this).attr('action');
             var data = $(this).serializeArray();
 
@@ -91,10 +126,41 @@
                 data: data,
                 method: "post",
                 success: function (response) {
+                    var actual_sheet = $($form[0][1]).val();
+                    var new_form = `<form class="change_important_true" action="/sheet/${actual_sheet}/change/true" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="sheet_id" value="${actual_sheet}">
+                        <button class="btn btn-light change-true text-muted" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
+                    </form>`;
+                    $form.replaceWith(new_form);
+
+
+                    // ADD AJAX FUNCTION TO NEW FORM
+                    $('.change_important_true').submit(function (event) {
+                        var $form = $(this);
+                        var url = $(this).attr('action');
+                        var data = $(this).serializeArray();
+
+                        $.ajax({
+                            url: url,
+                            data: data,
+                            method: "post",
+                            success: function (response) {
+                                var actual_sheet = $($form[0][1]).val();
+                                var new_form = `<form class="change_important_false" action="/sheet/${actual_sheet}/change/false" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="sheet_id" value="${actual_sheet}">
+                                    <button class="btn btn-light change-true text-danger" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
+                                </form>`;
+                                $form.replaceWith(new_form);
+                            }   
+                        })
+                        event.preventDefault();
+
+                    })
                 }
             })
             event.preventDefault();
-
         })
 
          $('.change_important_false').click(function(){
@@ -102,20 +168,9 @@
             var customer_sheet = $(this).closest('tr').children('td:nth-child(2)')
             customer_sheet.text(' ')
             customer_sheet.text(customer_sheet_text)
-            
-
          })
 
-            $('.change-true ').click(function(){
-                if(this.className = 'text-muted'){
-                    console.log('plop text-danger')
-                    $(this).removeClass('text-muted').addClass('btn text-danger change-true');
-                }
-                else if (this.className = 'text-danger'){
-                    console.log('plop text-muted')
-                    $(this).removeClass('text-danger').addClass('btn text-muted change-true');
-                }            
-            })
+           
 
 
          $('.archive').submit(function (event) {

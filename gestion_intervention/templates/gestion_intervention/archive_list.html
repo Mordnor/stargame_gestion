@@ -32,7 +32,7 @@
                     <form class="archive_remove" method='POST' action="{% url 'remove-sheet-archive' sheet.id %}">
                         {% csrf_token %}
                         <input type="hidden" name="sheet_id" value="{{sheet.id}}">
-                        <button class="btn text-muted" type="submit"><i class="fas fa-archive"></i></button>
+                        <button class="btn btn-light change-true text-muted" type="submit"><i class="fas fa-archive"></i></button>
                     </form>
                 </td>
             </tr>

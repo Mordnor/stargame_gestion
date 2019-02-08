@@ -35,6 +35,4 @@ $(function () {
         $(phone).text(phone_modify)
     }
 
-
-
 })

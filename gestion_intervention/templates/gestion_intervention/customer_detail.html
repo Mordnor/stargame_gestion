@@ -9,16 +9,13 @@
     <!-- ================ PILLS TABS ===================== -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="create-sheet-tab" data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet"
-                aria-selected="true">Créer Intervention</a>
+            <a class="nav-link active" id="create-sheet-tab" data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="true">Créer Intervention</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="create-request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request"
-                aria-selected="false">Créer Requête</a>
+            <a class="nav-link" id="create-request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="request" aria-selected="false">Créer Requête</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list"
-                aria-selected="false">Anciennes Fiches</a>
+            <a class="nav-link" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false">Anciennes Fiches</a>
         </li>
 
         <li class="nav-item ml-auto">
@@ -48,8 +45,17 @@
                             {% csrf_token %}
                             <input type="submit" name="submit" value="ajouter" class="updateBtn">
                             <div class="form-row">
+
                                 <div class="form-group col-md-12">
                                     {{ sheet_form.customer.as_hidden}}
+                                </div>
+                                <div class="form-group mr-4 col-md-1">
+                                    <label>Garanti</label>
+                                    {{ sheet_form.guarantee|add_class:"form-control"}}
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <label class="ml-2">Important</label>
+                                    {{ sheet_form.important|add_class:"form-control ml-2"}}
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label>statut</label>
@@ -57,8 +63,7 @@
                                 </div>
                                 {% for value, text in sheet_form.other.field.choices %}
                                 <div class="form-group col-md-3">
-                                    <input id="id_other_{{ forloop.counter0 }}" name="{{ sheet_form.other.name }}" type="checkbox"
-                                        value="{{ value }}">
+                                    <input id="id_other_{{ forloop.counter0 }}" name="{{ sheet_form.other.name }}" type="checkbox" value="{{ value }}">
                                     <label>{{ text }}</label>
                                 </div>
                                 {% endfor %}
@@ -78,7 +83,7 @@
                                     <label>Observation</label>
                                     {{ sheet_form.comment|add_class:"form-control"}}
                                 </div>
-                                <div class="form-group col-md-1">
+                                <div class="form-group mr-4 col-md-1">
                                     <label>Garanti</label>
                                     {{ sheet_form.guarantee|add_class:"form-control"}}
                                 </div>
@@ -176,8 +181,7 @@
 
 
     <!-- ================ CONFIRM DELETE MODAL ================ -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

@@ -87,9 +87,11 @@
 
         <h4>Autres</h4>
         <p>{{sheet.other}}</p>
+        {% if sheet.guarantee == True %}
+        <p class="text-center bg-success w-50 mx-auto d-block">Garanti</p>
+        {% endif %}
     </section>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

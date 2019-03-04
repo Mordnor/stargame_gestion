@@ -1,11 +1,10 @@
 @import 'detail';
 @import 'list';
-@import 'header';
-// ====================MOTHER========================= //
+@import 'header'; // ====================MOTHER========================= //
 
 body {
     background-color: #343A40;
-    font-family: Arial, sans-serif
+    font-family: Arial, sans-serif;
 }
 
 .col-12 {
@@ -13,11 +12,8 @@ body {
     margin-top: 50px;
     color: white;
 }
-
-
 // ====================UpdateVIEW========================= //
-
 .form_update section {
     width: 60%;
-    margin: 2rem auto 0 auto;
+    margin: 2rem auto 0;
 }

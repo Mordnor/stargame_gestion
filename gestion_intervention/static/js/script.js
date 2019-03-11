@@ -1,12 +1,12 @@
-$(function () {
+$(function() {
 
-    // ==================== DYNAMIC SEARCH ===================// 
+    // ==================== DYNAMIC SEARCH ===================//
 
     var customerInput = $("#myCustomerInput"); // SEARCH INPUT
     var customerName = $(".customerName"); // LIST ITEMS
 
     // Hide list items that do not match the input
-    customerInput.keyup(function () {
+    customerInput.keyup(function() {
         var filter = customerInput.val().toUpperCase();
         for (i = 0; i < customerName.length; i++) {
             if (filter) {
@@ -22,12 +22,6 @@ $(function () {
     });
 
 
-    // ==================== ADD SPACE BEETWEEN NUMBER IN PHONE NUMBERS ===================// 
-
-    $('.phone_number').each(function (i, phoneNumber) {
-        var phoneText = $(phoneNumber).html().trim();
-        var phoneModify = phoneText.replace(/(?!^)(?=(?:\d{2})+(?:\.|$))/gm, ' ');
-        $(phoneNumber).html(phoneModify)
-    })
+    // ==================== ADD SPACE BEETWEEN NUMBER IN PHONE NUMBERS ===================//
 
 })

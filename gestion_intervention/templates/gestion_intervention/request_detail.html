@@ -1,5 +1,5 @@
 {% extends "gestion_intervention/base.html" %}
-{% load widget_tweaks %}
+{% load widget_tweaks phonetags %}
 
 {% block extra_css %}
 {% if is_pdf == True %}
@@ -54,7 +54,7 @@
         <h3>{{request.customer.last_name}} {{request.customer.first_name}} </h3>
         <section class="head_sheet">
 
-            <p class="phone_number">{{request.customer.phone}} </p>
+            <p class="phone_number">{{request.customer.phone|formatphone}} </p>
             <p>{{request.customer.email}} </p>
         </section>
 

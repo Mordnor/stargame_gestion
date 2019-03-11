@@ -1,5 +1,5 @@
 {% extends "gestion_intervention/base.html" %}
-
+{% load phonetags %}
 {% block content %}
 
 <div class="col-12 sheet_list">
@@ -26,13 +26,13 @@
 
             <tr class="sheet_table customerName">
                 <td><a href="{% url 'sheet-detail' sheet.id %}">{{sheet.id}}</a></td>
-                <td  scope="row"><a href="{% url 'sheet-detail' sheet.id %}">{% filter upper %}{{sheet.customer.last_name}}{% endfilter %} 
+                <td scope="row"><a href="{% url 'sheet-detail' sheet.id %}">{% filter upper %}{{sheet.customer.last_name}}{% endfilter %}
                         {{sheet.customer.first_name}} {% if sheet.important == True %}<i class="fas fa-exclamation-triangle text-danger mr-1"></i>{% endif %}</a></td>
                 <td><a href="{% url 'sheet-detail' sheet.id %}">{{sheet.datepublished}}</a></td>
                 <td><a href="{% url 'sheet-detail' sheet.id %}">{{sheet.statut}}</a></td>
                 <td>
                     {% if sheet.important == True %}
-                       <form class="change_important_false" action="{% url 'change-sheet-important-false' sheet.id %}" method="post">
+                    <form class="change_important_false" action="{% url 'change-sheet-important-false' sheet.id %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="sheet_id" value="{{sheet.id}}">
                         <button class="btn btn-light change-true text-danger" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
@@ -60,10 +60,10 @@
 {% endblock %}
 {% block extra_js %}
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
 
 
-        $('.change_important_true').submit(function (event) {
+        $('.change_important_true').submit(function(event) {
             var $form = $(this);
             var url = $(this).attr('action');
             var data = $(this).serializeArray();
@@ -72,9 +72,10 @@
                 url: url,
                 data: data,
                 method: "post",
-                success: function (response) {
+                success: function(response) {
                     var actual_sheet = $($form[0][1]).val();
-                    var new_form = `<form class="change_important_false" action="/sheet/${actual_sheet}/change/false" method="post">
+                    var new_form =
+                        `<form class="change_important_false" action="/sheet/${actual_sheet}/change/false" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="sheet_id" value="${actual_sheet}">
                         <button class="btn btn-light change-true text-danger" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
@@ -82,7 +83,7 @@
                     $form.replaceWith(new_form);
 
                     // ADD AJAX FUNCTION TO NEW FORM
-                    $('.change_important_false').submit(function (event) {
+                    $('.change_important_false').submit(function(event) {
                         var $form = $(this);
                         var url = $(this).attr('action');
                         var data = $(this).serializeArray();
@@ -91,9 +92,10 @@
                             url: url,
                             data: data,
                             method: "post",
-                            success: function (response) {
+                            success: function(response) {
                                 var actual_sheet = $($form[0][1]).val();
-                                var new_form = `<form class="change_important_true" action="/sheet/${actual_sheet}/change/true" method="post">
+                                var new_form =
+                                    `<form class="change_important_true" action="/sheet/${actual_sheet}/change/true" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="sheet_id" value="${actual_sheet}">
                                     <button class="btn btn-light change-true text-muted" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
@@ -102,21 +104,21 @@
                             }
                         })
                         event.preventDefault();
-                        })
+                    })
 
-                }   
+                }
             })
             event.preventDefault();
 
         })
 
-        $('.change_important_true').click(function (){
+        $('.change_important_true').click(function() {
             var customer_sheet = $(this).closest('tr').children('td:nth-child(2)')
             customer_sheet.append('<i class="fas fa-exclamation-triangle text-danger mr-1"></i>')
         });
 
 
-     $('.change_important_false').submit(function (event) {
+        $('.change_important_false').submit(function(event) {
             var $form = $(this);
             var url = $(this).attr('action');
             var data = $(this).serializeArray();
@@ -125,9 +127,10 @@
                 url: url,
                 data: data,
                 method: "post",
-                success: function (response) {
+                success: function(response) {
                     var actual_sheet = $($form[0][1]).val();
-                    var new_form = `<form class="change_important_true" action="/sheet/${actual_sheet}/change/true" method="post">
+                    var new_form =
+                        `<form class="change_important_true" action="/sheet/${actual_sheet}/change/true" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="sheet_id" value="${actual_sheet}">
                         <button class="btn btn-light change-true text-muted" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
@@ -136,7 +139,7 @@
 
 
                     // ADD AJAX FUNCTION TO NEW FORM
-                    $('.change_important_true').submit(function (event) {
+                    $('.change_important_true').submit(function(event) {
                         var $form = $(this);
                         var url = $(this).attr('action');
                         var data = $(this).serializeArray();
@@ -145,15 +148,16 @@
                             url: url,
                             data: data,
                             method: "post",
-                            success: function (response) {
+                            success: function(response) {
                                 var actual_sheet = $($form[0][1]).val();
-                                var new_form = `<form class="change_important_false" action="/sheet/${actual_sheet}/change/false" method="post">
+                                var new_form =
+                                    `<form class="change_important_false" action="/sheet/${actual_sheet}/change/false" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="sheet_id" value="${actual_sheet}">
                                     <button class="btn btn-light change-true text-danger" type="submit"><i class="fas fa-exclamation-triangle"></i></button>
                                 </form>`;
                                 $form.replaceWith(new_form);
-                            }   
+                            }
                         })
                         event.preventDefault();
 
@@ -163,17 +167,17 @@
             event.preventDefault();
         })
 
-         $('.change_important_false').click(function(){
+        $('.change_important_false').click(function() {
             var customer_sheet_text = $(this).closest('tr').children('td:nth-child(2)').text()
             var customer_sheet = $(this).closest('tr').children('td:nth-child(2)')
             customer_sheet.text(' ')
             customer_sheet.text(customer_sheet_text)
-         })
-
-           
+        })
 
 
-         $('.archive').submit(function (event) {
+
+
+        $('.archive').submit(function(event) {
             var url = $(this).attr('action');
             var data = $(this).serializeArray();
 
@@ -181,14 +185,13 @@
                 url: url,
                 data: data,
                 method: "post",
-                success: function (response) {
-                }
+                success: function(response) {}
             })
             event.preventDefault();
 
         })
 
-        $('.archive').submit(function(){
+        $('.archive').submit(function() {
             $(this).closest('tr').remove()
         })
     });

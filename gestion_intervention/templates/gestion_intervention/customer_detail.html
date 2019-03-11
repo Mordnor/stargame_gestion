@@ -1,5 +1,5 @@
 {% extends "gestion_intervention/base.html" %}
-{% load widget_tweaks %}
+{% load widget_tweaks phonetags %}
 
 {% block content %}
 
@@ -36,8 +36,8 @@
                     <h3>Date d'intervention : {{ date }}</h3>
                     <section class="head_sheet">
 
-                        <p class="phone_number">{{customer.phone}} </p>
-                        <p>{{customer.email}} </p>
+                        <p>{{customer.phone|formatphone}} </p>
+                        <p>{{customer.email|default:""}} </p>
                     </section>
 
                     <section>
@@ -110,7 +110,7 @@
                     <h3>Date : {{ date }}</h3>
                     <section class="head_sheet">
 
-                        <p>{{customer.phone}} </p>
+                        <p>{{customer.phone|formatphone}} </p>
                         <p>{{customer.email}} </p>
                     </section>
 

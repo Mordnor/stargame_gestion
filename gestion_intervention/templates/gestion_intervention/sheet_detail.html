@@ -1,5 +1,5 @@
 {% extends "gestion_intervention/base.html" %}
-{% load widget_tweaks %}
+{% load widget_tweaks phonetags %}
 
 {% block extra_css %}
 {% if is_pdf == True %}
@@ -60,8 +60,8 @@
     <h5>Date d'intervention : {{ sheet.datepublished }}</h5>
     <section class="head_sheet">
 
-        <p class="phone_number">{{sheet.customer.phone}} </p>
-        <p>{{sheet.customer.email}} </p>
+        <p>{{sheet.customer.phone|formatphone}} </p>
+        <p>{{sheet.customer.email|default:""}} </p>
     </section>
 
     <section class="core_sheet">
